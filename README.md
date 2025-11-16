@@ -62,7 +62,7 @@ pip install -r requirements.txt
 
 **Click aquí para abrir directamente en Colab:**
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jjjulianleon/ProyectoFinalML/blob/main/notebooks/ProyectoFinal_ML.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jjjulianleon/ProyectoFinalML/blob/master/notebooks/ProyectoFinal_ML.ipynb)
 
 El notebook está optimizado para ejecutarse completamente en Colab con instalación automática de dependencias.
 
@@ -73,10 +73,12 @@ jupyter notebook notebooks/ProyectoFinal_ML.ipynb
 
 ## 📋 Fases del Proyecto
 
-### Fase 1: Obtención de Datos
-- Descarga automática de PDFs desde lista de URLs
-- Extracción de datos con OpenAI API (sin OCR)
-- Limpieza y estructuración
+### Fase 1: Obtención de Datos (AUTOMÁTICA 100%)
+- **Descarga automática** de PDFs desde lista de URLs configurables
+- **Extracción de texto** con pdfplumber (sin OCR necesario)
+- **Procesamiento con LLM** usando OpenAI API (gpt-4o-mini)
+- **Generación automática** de dataset estructurado en CSV
+- **✓ CUMPLE:** Extracción 100% automática con API de LLM
 
 ### Fase 2: Análisis Exploratorio (EDA)
 - Estadísticas descriptivas

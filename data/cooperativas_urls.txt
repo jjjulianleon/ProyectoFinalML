@@ -1,0 +1,15 @@
+# URLs de PDFs de Indicadores Financieros - Cooperativas Segmento 1 Ecuador
+# Formato: URL | Nombre Cooperativa | Rating Esperado
+# Actualizado: Noviembre 2025
+
+# Cooperativa JEP (rating según Summa Ratings 2025)
+https://summaratings.com/wp-content/uploads/2025/03/ICR-IFIS-2025-004-COAC_JEP_diciembre_2024_signed-signed.pdf|JEP|BB
+
+# Ejemplo ASIS (mencionado en clase)
+https://www.asis.fin.ec/wp-content/uploads/2020/08/2025-06-Indicadores-Financieros_ago_mkt_2025.pdf|ASIS|A
+
+# NOTA: Agregar más URLs de cooperativas del Segmento 1
+# Se pueden obtener de:
+# - https://www.seps.gob.ec/calificacion-de-riesgo/
+# - Páginas web individuales de cooperativas
+# - Calificadoras de riesgo: Summa Ratings, Pacific Credit Rating, Bank Watch Ratings, Union Ratings

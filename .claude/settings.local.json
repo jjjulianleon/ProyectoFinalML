@@ -4,7 +4,18 @@
       "Bash(git init:*)",
       "Bash(git config:*)",
       "Bash(git add:*)",
-      "Bash(git commit -m \"$(cat <<''EOF''\nfeat: Initial project structure with clustering and semi-supervised learning\n\n- Add project skeleton with src/etl, src/models, and notebooks directories\n- Implement PDF downloader module for automated PDF acquisition\n- Create data extraction module using OpenAI API\n- Implement ClusteringAnalyzer with K-Means, Agglomerative, and DBSCAN algorithms\n- Add SemiSupervisedLearner with Label Propagation and Self-Training\n- Create comprehensive Jupyter notebook for Google Colab\n- Generate sample financial data for cooperatives\n- Include full documentation and README with setup instructions\n- Add requirements.txt with all dependencies\n\nProject ready for clustering analysis and semi-supervised learning on Ecuador''s cooperatives Segment 1 financial data.\n\n🤖 Generated with Claude Code\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
+      "Bash(git commit -m \"$(cat <<''EOF''\nfeat: Initial project structure with clustering and semi-supervised learning\n\n- Add project skeleton with src/etl, src/models, and notebooks directories\n- Implement PDF downloader module for automated PDF acquisition\n- Create data extraction module using OpenAI API\n- Implement ClusteringAnalyzer with K-Means, Agglomerative, and DBSCAN algorithms\n- Add SemiSupervisedLearner with Label Propagation and Self-Training\n- Create comprehensive Jupyter notebook for Google Colab\n- Generate sample financial data for cooperatives\n- Include full documentation and README with setup instructions\n- Add requirements.txt with all dependencies\n\nProject ready for clustering analysis and semi-supervised learning on Ecuador''s cooperatives Segment 1 financial data.\n\n🤖 Generated with Claude Code\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git commit -m \"$(cat <<''EOF''\ndocs: Add comprehensive setup and methodology documentation\n\n- Add SETUP.md with detailed configuration instructions for OpenAI API\n- Include troubleshooting guide and data acquisition methods\n- Add METHODOLOGY.md with complete project workflow documentation\n- Document all algorithms, metrics, and validation procedures\n- Include theoretical references and production deployment guidelines\n\nEnhanced documentation for smooth project execution and understanding.\n\n🤖 Generated with Claude Code\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git commit -m \"$(cat <<''EOF''\ndocs: Add comprehensive usage examples and full pipeline script\n\n- Create run_full_pipeline.py with complete end-to-end example\n- Add USAGE.md with 10+ code examples covering all project features\n- Include clustering analysis, semi-supervised learning examples\n- Add visualization, debugging, and analysis examples\n- Provide template code for data exploration and results interpretation\n\nExamples enable users to quickly understand and extend the project.\n\n🤖 Generated with Claude Code\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git commit:*)",
+      "Bash(dir:*)",
+      "Bash(powershell -Command:*)",
+      "Bash(git remote add:*)",
+      "Bash(git push:*)",
+      "Bash(python:*)",
+      "Bash(pip install:*)",
+      "Bash(set OPENAI_API_KEY=)",
+      "Bash(set:*)"
     ],
     "deny": [],
     "ask": []
