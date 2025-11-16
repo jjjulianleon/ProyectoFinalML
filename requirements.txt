@@ -1,15 +1,22 @@
-pandas==2.1.3
-numpy==1.24.3
-matplotlib==3.8.2
-seaborn==0.13.0
-scikit-learn==1.3.2
-scipy==1.11.4
-requests==2.31.0
-python-dotenv==1.0.0
-openai==1.3.5
-PyPDF2==3.0.1
-pdfplumber==0.10.3
-python-dateutil==2.8.2
-tqdm==4.66.1
-Pillow==10.1.0
-plotly==5.18.0
+# Core data science packages (using flexible versions for Colab compatibility)
+pandas>=2.0.0
+numpy>=1.24.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+scikit-learn>=1.3.0
+scipy>=1.11.0
+
+# Utilities
+requests>=2.31.0
+python-dotenv>=1.0.0
+python-dateutil>=2.8.2
+tqdm>=4.66.0
+Pillow>=10.0.0
+
+# OpenAI API and PDF processing
+openai>=1.3.0
+PyPDF2>=3.0.0
+pdfplumber>=0.10.0
+
+# Visualization
+plotly>=5.18.0
