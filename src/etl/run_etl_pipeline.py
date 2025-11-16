@@ -104,10 +104,16 @@ def run_etl_pipeline(
     download_results = downloader.download_pdfs_batch(urls_only)
 
     if not download_results['successful']:
-        logger.error("❌ No se descargaron PDFs exitosamente")
-        return
+        logger.warning("⚠️  No se descargaron PDFs exitosamente")
+        logger.warning("    Intentando continuar con datos de ejemplo...")
+        return None
 
-    logger.info(f"✓ PDFs descargados: {len(download_results['successful'])}")
+    # Mostrar resumen de descargas
+    logger.info(f"✓ PDFs descargados exitosamente: {len(download_results['successful'])}")
+    if download_results['failed']:
+        logger.warning(f"⚠️  PDFs que fallaron: {len(download_results['failed'])}")
+        for failed in download_results['failed']:
+            logger.warning(f"    • {failed['url']}")
 
     # FASE 3: Extraer datos con OpenAI API
     logger.info("\n🤖 FASE 3: Extrayendo datos con OpenAI API...")
@@ -115,13 +121,22 @@ def run_etl_pipeline(
     extractor = DataExtractor()
 
     # Preparar lista de PDFs para procesar
+    # Mapear PDFs descargados con su metadata (nombre, rating)
     pdf_paths_to_process = []
 
-    for i, result in enumerate(download_results['successful']):
+    for result in download_results['successful']:
+        pdf_url = result['url']
         pdf_path = result['path']
-        # Obtener metadata de la URL original
-        _, nombre, rating = urls_data[i]
-        pdf_paths_to_process.append((pdf_path, nombre, rating))
+
+        # Buscar metadata correspondiente a esta URL
+        metadata = next((item for item in urls_data if item[0] == pdf_url), None)
+
+        if metadata:
+            _, nombre, rating = metadata
+            pdf_paths_to_process.append((pdf_path, nombre, rating))
+        else:
+            # Si no se encuentra metadata, usar valores por defecto
+            pdf_paths_to_process.append((pdf_path, "", ""))
 
     # Procesar todos los PDFs
     df = extractor.process_batch(pdf_paths_to_process)
