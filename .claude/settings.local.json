@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git init:*)",
+      "Bash(git config:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nfeat: Initial project structure with clustering and semi-supervised learning\n\n- Add project skeleton with src/etl, src/models, and notebooks directories\n- Implement PDF downloader module for automated PDF acquisition\n- Create data extraction module using OpenAI API\n- Implement ClusteringAnalyzer with K-Means, Agglomerative, and DBSCAN algorithms\n- Add SemiSupervisedLearner with Label Propagation and Self-Training\n- Create comprehensive Jupyter notebook for Google Colab\n- Generate sample financial data for cooperatives\n- Include full documentation and README with setup instructions\n- Add requirements.txt with all dependencies\n\nProject ready for clustering analysis and semi-supervised learning on Ecuador''s cooperatives Segment 1 financial data.\n\n🤖 Generated with Claude Code\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

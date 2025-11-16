@@ -1,0 +1,21 @@
+# URLs de PDFs de Indicadores Financieros de Cooperativas
+# Fuente: Superintendencia de Economía Popular y Solidaria (SEPS)
+# y ASIS (Asociación de Supervisores de Instituciones de Seguros)
+
+# Ejemplo de URL (descomenta para usar):
+# https://www.asis.fin.ec/wp-content/uploads/2020/08/2025-06-Indicadores-Financieros_ago_mkt_2025.pdf
+
+# Instrucciones para agregar nuevas URLs:
+# 1. Buscar reportes financieros de cooperativas en:
+#    - https://www.seps.gob.ec
+#    - https://www.asis.fin.ec
+# 2. Copiar la URL del PDF
+# 3. Agregar una línea con la URL
+# 4. El script pdf_downloader.py descargará automáticamente todos los PDFs
+
+# Ejemplos de cooperativas del Segmento 1:
+# - COAC Atuntaqui
+# - Cooperativa de Ahorro y Crédito San Francisco
+# - COACTUR
+# - COOPCAC
+# Y otras cooperativas ecuatorianas
