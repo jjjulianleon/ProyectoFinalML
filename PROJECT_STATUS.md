@@ -1,8 +1,124 @@
-# 📊 Estado del Proyecto
+# 📊 Estado del Proyecto - ACTUALIZADO 19 NOVIEMBRE 2025
 
-**Fecha:** Noviembre 2025
-**Versión:** 1.0.0 (MVP - Minimum Viable Product)
-**Estado:** ✅ COMPLETADO Y LISTO PARA USAR
+**Fecha:** Noviembre 2025 (Última actualización: 19 Nov)
+**Versión:** 1.1.0 (Bug Fixes Applied)
+**Estado:** ✅ **COMPLETADO Y OPERACIONAL CON TODOS LOS FIXES APLICADOS**
+
+---
+
+## 🔴 ERRORES ENCONTRADOS Y SOLUCIONADOS (Esta Sesión)
+
+### Error 1: MODEL_NAME = "gpt-5" ❌ → ✅ FIXED
+**Severidad:** CRÍTICO
+**Archivo:** `.env` línea 12
+**Problema:**
+```
+MODEL_NAME=gpt-5
+```
+El modelo "gpt-5" no existe en la API de OpenAI. Causaba crash en todas las llamadas a la API.
+
+**Solución Aplicada:**
+```
+MODEL_NAME=gpt-4o-mini  # Modelo válido, económico y rápido
+```
+**Status:** ✅ RESUELTO
+
+---
+
+### Error 2: NaN Values en PCA/StandardScaler ❌ → ✅ FIXED
+**Severidad:** CRÍTICO
+**Archivo:** `notebooks/ProyectoFinal_ML.ipynb` Cell 16
+**Problema:**
+```
+ValueError: Input X contains NaN.
+PCA does not accept missing values encoded as NaN natively.
+```
+Los datos extraídos contienen valores faltantes. Algunas columnas como `morosidad_total` y `cartera_depositos` no aparecen en todos los PDFs.
+
+**Solución Aplicada:**
+```python
+# Eliminar filas con NaN ANTES del preprocessing
+df_clean = df[numeric_cols].dropna()
+X_scaled = scaler.fit_transform(df_clean)  # Sin NaN
+```
+**Impact:** Filas incompletas se descartan (comportamiento correcto para análisis dimensional)
+**Status:** ✅ RESUELTO
+
+---
+
+### Error 3: NaN en Histogramas (Distribution by Rating) ❌ → ✅ FIXED
+**Severidad:** MODERADO
+**Archivo:** Cell 13
+**Problema:**
+```
+ValueError: autodetected range of [nan, nan] is not finite
+```
+Intentaba hacer histogram con solo valores NaN.
+
+**Solución Aplicada:**
+```python
+data = df[df['rating'] == rating][col].dropna()
+if len(data) > 0:
+    axes[idx].hist(data, alpha=0.5, label=f'Rating {rating}')
+else:
+    axes[idx].text(0.5, 0.5, 'Sin datos disponibles')
+```
+**Status:** ✅ RESUELTO
+
+---
+
+### Error 4: Variable Undefined en Clustering Viz ❌ → ✅ FIXED
+**Severidad:** MODERADO
+**Archivo:** Cell 26
+**Problema:**
+```
+NameError: name 'X_tsne' is not defined
+```
+Cell 26 referenciaba variable que no existía.
+
+**Solución Aplicada:**
+```python
+X_reduced_data = X_reduced if X_reduced.shape[1] >= 2 else ...
+# Usar X_reduced (correcta) en lugar de X_tsne
+```
+**Status:** ✅ RESUELTO
+
+---
+
+### Error 5: Data Inconsistency Across Cells ❌ → ✅ FIXED
+**Severidad:** MODERADO
+**Archivo:** Cells 18, 27, 30, 38
+**Problema:**
+- Cell 16 creaba `df_clean` (sin NaN)
+- Cells posteriores usaban `df` original (con NaN)
+- Causaba inconsistencias en análisis
+
+**Solución Aplicada:**
+```python
+# Cell 18: df_clustering = df.loc[df_clean.index]
+# Cell 27: df_for_comparison = df.loc[df_clean.index]
+# Cell 30: df_semi = df.loc[df_clean.index]
+# Cell 38: df_clustered = df.loc[df_clean.index]
+```
+**Status:** ✅ RESUELTO
+
+---
+
+### Error 6: ValueError in PCA due to Infinite Values ❌ → ✅ FIXED
+**Severidad:** CRÍTICO
+**Archivo:** `notebooks/ProyectoFinal_ML.ipynb` Cell 16
+**Problema:**
+```
+ValueError: Input X contains NaN.
+```
+Causado por valores infinitos (`inf`) en los datos que `StandardScaler` convierte a `NaN` durante la normalización. `dropna()` no elimina `inf` por defecto.
+
+**Solución Aplicada:**
+```python
+# Reemplazar inf por NaN antes de dropna
+df_clean = df[numeric_cols].replace([np.inf, -np.inf], np.nan).dropna()
+```
+**Status:** ✅ RESUELTO
 
 ---
 
