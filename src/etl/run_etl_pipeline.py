@@ -104,9 +104,15 @@ def run_etl_pipeline(
     download_results = downloader.download_pdfs_batch(urls_only)
 
     if not download_results['successful']:
-        logger.warning("⚠️  No se descargaron PDFs exitosamente")
-        logger.warning("    Intentando continuar con datos de ejemplo...")
-        return None
+        logger.error("❌ CRÍTICO: No se descargaron PDFs exitosamente")
+        logger.error(f"   PDFs intentados: {len(urls_data)}")
+        logger.error(f"   PDFs descargados: 0")
+        if download_results['failed']:
+            logger.error(f"   PDFs que fallaron: {len(download_results['failed'])}")
+            for failed in download_results['failed']:
+                logger.error(f"      • {failed['url']}")
+                logger.error(f"        Error: {failed.get('error', 'Unknown')}")
+        raise ValueError("No se pudieron descargar PDFs - Extracción de datos reales falló")
 
     # Mostrar resumen de descargas
     logger.info(f"✓ PDFs descargados exitosamente: {len(download_results['successful'])}")
@@ -139,11 +145,25 @@ def run_etl_pipeline(
             pdf_paths_to_process.append((pdf_path, "", ""))
 
     # Procesar todos los PDFs
+    if not pdf_paths_to_process:
+        logger.error("❌ CRÍTICO: No hay PDFs para procesar")
+        logger.error(f"   PDFs descargados: {len(download_results['successful'])}")
+        logger.error(f"   PDFs listos: {len(pdf_paths_to_process)}")
+        raise ValueError("No hay PDFs para procesar - Algo salió mal en mapeo de metadata")
+
+    logger.info(f"  Procesando {len(pdf_paths_to_process)} PDFs con OpenAI...")
     df = extractor.process_batch(pdf_paths_to_process)
 
-    if df.empty:
-        logger.error("❌ No se extrajeron datos")
-        return
+    if df is None or df.empty:
+        logger.error("❌ CRÍTICO: No se extrajeron datos de los PDFs")
+        logger.error(f"   PDFs procesados: {len(pdf_paths_to_process)}")
+        logger.error(f"   Filas extraídas: 0")
+        logger.error("   Posibles causas:")
+        logger.error("      • PDFs contienen solo imágenes (requiere OCR)")
+        logger.error("      • Error en extracción con OpenAI API")
+        logger.error("      • PDFs están dañados o vacíos")
+        logger.error("      • Límite de API alcanzado")
+        raise ValueError("Extracción de datos falló - No se extrajo información de los PDFs")
 
     # FASE 4: Guardar datos
     logger.info("\n💾 FASE 4: Guardando datos...")

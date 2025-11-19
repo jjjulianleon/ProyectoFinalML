@@ -1,15 +1,54 @@
 # URLs de PDFs de Indicadores Financieros - Cooperativas Segmento 1 Ecuador
 # Formato: URL | Nombre Cooperativa | Rating Esperado
+# Requisito: Todos los URLs DEBEN ser accesibles y contener texto extraíble
 # Actualizado: Noviembre 2025
 
-# Cooperativa JEP (rating según Summa Ratings 2025)
+# ⚠️  IMPORTANTE: Reemplaza estos URLs con tus propias fuentes
+# Asegúrate de que:
+# 1. Los URLs sean directos a PDFs (no a páginas web)
+# 2. Los PDFs contengan texto extraíble (no solo imágenes)
+# 3. Los URLs sean públicamente accesibles sin autenticación
+
+# Cooperativa JEP - Summa Ratings 2025
+# NOTA: Reemplaza con URL funcional si este no funciona
 https://summaratings.com/wp-content/uploads/2025/03/ICR-IFIS-2025-004-COAC_JEP_diciembre_2024_signed-signed.pdf|JEP|BB
 
-# Ejemplo ASIS (mencionado en clase)
+# Cooperativa ASIS - calificación A
+# NOTA: Reemplaza con URL funcional si este no funciona
 https://www.asis.fin.ec/wp-content/uploads/2020/08/2025-06-Indicadores-Financieros_ago_mkt_2025.pdf|ASIS|A
 
-# NOTA: Agregar más URLs de cooperativas del Segmento 1
-# Se pueden obtener de:
-# - https://www.seps.gob.ec/calificacion-de-riesgo/
-# - Páginas web individuales de cooperativas
-# - Calificadoras de riesgo: Summa Ratings, Pacific Credit Rating, Bank Watch Ratings, Union Ratings
+# ============================================================================
+# CÓMO AGREGAR MÁS URLs:
+# ============================================================================
+# 1. Obtén PDFs de:
+#    - SEPS: https://www.seps.gob.ec/calificacion-de-riesgo/
+#    - Summa Ratings: https://summaratings.com/
+#    - Pacific Credit Rating: https://pcrecuador.com/
+#    - Bank Watch Ratings: https://www.bankwatch.com.ec/
+#    - Union Ratings: https://unionratings.com.ec/
+#    - Páginas web de cooperativas individuales
+#
+# 2. Asegúrate de que:
+#    - Cada URL sea accesible directamente (HTTP 200)
+#    - El PDF contiene texto (no solo imágenes escaneadas)
+#    - No requiere autenticación
+#    - El servidor permite descargas programáticas
+#
+# 3. Agrega líneas con formato: URL|NombreCooperativa|Rating
+#    Ejemplo: https://ejemplo.com/pdf.pdf|Cooperativa XYZ|A
+#
+# 4. Prueba visitando cada URL en tu navegador primero
+#
+# ============================================================================
+# ESTRUCTURA DEL RATING:
+# ============================================================================
+# Usa ratings estándar ecuatorianos:
+# - AAA: Muy seguro
+# - AA: Seguro
+# - A: Adecuado
+# - BBB: Aceptable
+# - BB: Especulativo
+# - B: Muy especulativo
+# - CCC: En riesgo
+# - D: Incumplimiento
+# ============================================================================
