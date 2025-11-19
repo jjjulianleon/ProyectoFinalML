@@ -17,6 +17,31 @@ https://www.asis.fin.ec/wp-content/uploads/2020/08/2025-06-Indicadores-Financier
 # Tipo: Reporte de Calificación de Riesgo
 https://summaratings.com/wp-content/uploads/2025/03/ICR-IFIS-2025-004-COAC_JEP_diciembre_2024_signed-signed.pdf|JEP|BB
 
+# SEPS - Evaluación de Salud Financiera Segmentos
+# Fuente: SEPS Oficial (Superintendencia de Economía Popular y Solidaria)
+# Tipo: Documento oficial de evaluación CAMEL
+https://www.seps.gob.ec/wp-content/uploads/Eval_Salud_Financiera_Segmentos_CAMEL_publicacion.pdf|SEPS-Salud-Financiera|BBB
+
+# SEPS - Riesgo de Crédito SFPS
+# Fuente: SEPS Oficial
+# Tipo: Normas de riesgo de crédito
+https://www.seps.gob.ec/wp-content/uploads/Riesgo-de-Credito-SFPS-Corregido.pdf|SEPS-Riesgo-Credito|BBB
+
+# SEPS - Calificación de Activos de Riesgo
+# Fuente: SEPS Oficial
+# Tipo: Provisiones y clasificación de activos
+https://www.seps.gob.ec/wp-content/uploads/Calificacion-activos-riesgo.pdf|SEPS-Calificacion-Activos|A
+
+# BCE - Cooperativas Aprobadas por Región
+# Fuente: Banco Central del Ecuador
+# Tipo: Listado oficial de cooperativas del sistema
+https://contenido.bce.fin.ec/documentos/ServiciosBCentral/COACS/Coacsaprobadasxregionact.pdf|BCE-Cooperativas-Segmento1|A
+
+# SEPS - Calificadoras de Riesgo (2023)
+# Fuente: SEPS Estadísticas
+# Tipo: Información sobre calificadoras y calificaciones
+https://estadisticas.seps.gob.ec/wp-content/uploads/2023/07/Calificadoras_de_Riesgo_web_mar23.pdf|SEPS-Calificadoras|AAA
+
 # ============================================================================
 # COOPERATIVAS ADICIONALES - MÚLTIPLES FUENTES
 # ============================================================================
