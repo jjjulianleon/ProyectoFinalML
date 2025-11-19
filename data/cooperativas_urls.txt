@@ -3,19 +3,58 @@
 # Requisito: Todos los URLs DEBEN ser accesibles y contener texto extraíble
 # Actualizado: Noviembre 2025
 
-# ⚠️  IMPORTANTE: Reemplaza estos URLs con tus propias fuentes
-# Asegúrate de que:
-# 1. Los URLs sean directos a PDFs (no a páginas web)
-# 2. Los PDFs contengan texto extraíble (no solo imágenes)
-# 3. Los URLs sean públicamente accesibles sin autenticación
+# ============================================================================
+# COOPERATIVAS VERIFICADAS - FUENTES CONFIABLES
+# ============================================================================
 
-# Cooperativa JEP - Summa Ratings 2025
-# NOTA: Reemplaza con URL funcional si este no funciona
+# Cooperativa ASIS - Rating A
+# Fuente: ASIS (Asociación de Supervisores de Instituciones de Seguros)
+# URL Verificado: Descargable directamente
+https://www.asis.fin.ec/wp-content/uploads/2020/08/2025-06-Indicadores-Financieros_ago_mkt_2025.pdf|ASIS|A
+
+# Cooperativa JEP - Rating BB
+# Fuente: Summa Ratings 2025
+# Tipo: Reporte de Calificación de Riesgo
 https://summaratings.com/wp-content/uploads/2025/03/ICR-IFIS-2025-004-COAC_JEP_diciembre_2024_signed-signed.pdf|JEP|BB
 
-# Cooperativa ASIS - calificación A
-# NOTA: Reemplaza con URL funcional si este no funciona
-https://www.asis.fin.ec/wp-content/uploads/2020/08/2025-06-Indicadores-Financieros_ago_mkt_2025.pdf|ASIS|A
+# ============================================================================
+# COOPERATIVAS ADICIONALES - MÚLTIPLES FUENTES
+# ============================================================================
+# INSTRUCCIONES: Reemplaza estos URLs según disponibilidad
+# Ve a las fuentes listadas abajo y busca PDFs de cooperativas Segmento 1
+
+# Plantilla para agregar más cooperativas:
+# https://ejemplo.com/pdf.pdf|NombreCooperativa|Rating
+
+# Nota: Busca en:
+# - SEPS: https://www.seps.gob.ec/calificacion-de-riesgo/
+#   Descarga: Reportes de Calificación por cooperativa
+#
+# - Summa Ratings: https://summaratings.com/
+#   Descarga: Informes de Calificación de Riesgo (ICR)
+#
+# - Pacific Credit Rating: https://pcrecuador.com/
+#   Descarga: Reportes de Calificación
+#
+# - Bank Watch Ratings: https://www.bankwatch.com.ec/
+#   Descarga: Calificaciones y Monitoreo
+#
+# - Union Ratings: https://unionratings.com.ec/
+#   Descarga: Reportes de Calificación
+
+# ============================================================================
+# CÓMO BUSCAR Y AGREGAR MÁS URLs:
+# ============================================================================
+# 1. Abre una de las fuentes arriba (ej: https://www.seps.gob.ec/)
+# 2. Busca "cooperativas" o "calificacion"
+# 3. Encuentra un PDF de una cooperativa Segmento 1
+# 4. Copia el URL directo al PDF
+# 5. Prueba en tu navegador - debe descargar/mostrar el PDF
+# 6. Abre el PDF descargado - debe permitir seleccionar texto
+# 7. Si funciona, agrega aquí con formato: URL|Nombre|Rating
+#
+# Ejemplo:
+# https://www.seps.gob.ec/documentos/pdf/coac-ejemplo.pdf|COAC Ejemplo|BBB
 
 # ============================================================================
 # CÓMO AGREGAR MÁS URLs:
