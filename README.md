@@ -62,7 +62,7 @@ pip install -r requirements.txt
 
 **Click aquí para abrir directamente en Colab:**
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jjjulianleon/ProyectoFinalML/blob/master/notebooks/ProyectoFinal_ML.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/jjjulianleon/ProyectoFinalML/blob/main/notebooks/ProyectoFinal_ML.ipynb)
 
 El notebook está optimizado para ejecutarse completamente en Colab con instalación automática de dependencias.
 
