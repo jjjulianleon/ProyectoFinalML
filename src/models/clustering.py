@@ -58,14 +58,40 @@ class ClusteringAnalyzer:
     def find_optimal_k(self, k_range: range = range(2, 11)) -> Dict:
         """
         Encuentra el número óptimo de clusters para K-Means.
+        Valida k automáticamente para datasets pequeños.
 
         Args:
             k_range: Rango de k a evaluar
 
         Returns:
-            Diccionario con métricas para cada k
+            DataFrame con métricas para cada k
         """
         logger.info("Buscando k óptimo...")
+
+        n_samples = self.data_scaled.shape[0]
+
+        # Validar que k sea válido para el tamaño del dataset
+        # Regla: k debe ser < n/3 para clustering significativo
+        max_k = max(2, n_samples // 3)
+
+        # Filtrar k_range
+        valid_k_range = [k for k in k_range if k <= max_k and k < n_samples]
+
+        if len(valid_k_range) == 0:
+            logger.error(f"❌ No hay valores válidos de k para {n_samples} muestras")
+            logger.error(f"   Max k válido: {max_k}, muestras: {n_samples}")
+            # Retornar k_range mínimo válido
+            valid_k_range = list(range(2, min(max_k + 1, 4)))
+
+        if len(valid_k_range) < len(k_range):
+            logger.warning(f"⚠️  k_range ajustado para dataset pequeño")
+            logger.warning(f"   Evaluando k ∈ {valid_k_range}")
+
+        # Adaptive n_init para datasets pequeños
+        if n_samples < 50:
+            n_init = 20  # Más iteraciones para estabilidad
+        else:
+            n_init = 10  # Default
 
         results = {
             'k': [],
@@ -74,23 +100,36 @@ class ClusteringAnalyzer:
             'calinski_harabasz': []
         }
 
-        for k in k_range:
-            kmeans = KMeans(n_clusters=k, random_state=self.random_state, n_init=10)
-            labels = kmeans.fit_predict(self.data_scaled)
+        for k in valid_k_range:
+            try:
+                kmeans = KMeans(
+                    n_clusters=k,
+                    random_state=self.random_state,
+                    n_init=n_init,
+                    init='k-means++'  # Mejor para datos pequeños
+                )
+                labels = kmeans.fit_predict(self.data_scaled)
 
-            # Calcular métricas
-            silhouette = silhouette_score(self.data_scaled, labels)
-            db_index = davies_bouldin_score(self.data_scaled, labels)
-            ch_index = calinski_harabasz_score(self.data_scaled, labels)
+                # Calcular métricas
+                silhouette = silhouette_score(self.data_scaled, labels)
+                db_index = davies_bouldin_score(self.data_scaled, labels)
+                ch_index = calinski_harabasz_score(self.data_scaled, labels)
 
-            results['k'].append(k)
-            results['silhouette'].append(silhouette)
-            results['davies_bouldin'].append(db_index)
-            results['calinski_harabasz'].append(ch_index)
+                results['k'].append(k)
+                results['silhouette'].append(silhouette)
+                results['davies_bouldin'].append(db_index)
+                results['calinski_harabasz'].append(ch_index)
 
-            logger.info(
-                f"  k={k}: Silhouette={silhouette:.3f}, DB={db_index:.3f}, CH={ch_index:.1f}"
-            )
+                logger.info(
+                    f"  k={k}: Silhouette={silhouette:.3f}, DB={db_index:.3f}, CH={ch_index:.1f}"
+                )
+            except Exception as e:
+                logger.warning(f"  ⚠️  k={k} falló: {e}")
+                continue
+
+        if not results['k']:
+            logger.error("❌ No se pudieron calcular métricas para ningún k")
+            raise ValueError("find_optimal_k: no valid k values")
 
         return pd.DataFrame(results)
 
@@ -145,18 +184,45 @@ class ClusteringAnalyzer:
 
         return labels, metrics
 
-    def dbscan_clustering(self, eps: float = 0.5, min_samples: int = 5) -> Tuple[np.ndarray, Dict]:
+    def dbscan_clustering(self, eps: float = None, min_samples: int = None) -> Tuple[np.ndarray, Dict]:
         """
-        Aplica DBSCAN clustering.
+        Aplica DBSCAN clustering con parámetros adaptativos para datasets pequeños.
 
         Args:
-            eps: Radio máximo de los vecinos
-            min_samples: Número mínimo de muestras para forma un cluster
+            eps: Radio máximo de los vecinos (None = estimar automáticamente)
+            min_samples: Número mínimo de muestras (None = estimar automáticamente)
 
         Returns:
             Tupla (labels, métricas)
         """
-        logger.info(f"\n▶ DBSCAN (eps={eps}, min_samples={min_samples})")
+        n_samples = self.data_scaled.shape[0]
+
+        # Parámetros adaptativos para datasets pequeños
+        if min_samples is None:
+            if n_samples < 20:
+                min_samples = max(2, n_samples // 10)  # Muy flexible para datos pequeños
+                logger.info(f"⚠️  Dataset pequeño: min_samples={min_samples}")
+            elif n_samples < 50:
+                min_samples = 3  # Moderadamente flexible
+            else:
+                min_samples = 5  # Default
+
+        if eps is None:
+            # Estimar eps del k-distance graph
+            from sklearn.neighbors import NearestNeighbors
+            try:
+                # Usar k=min_samples-1 para estimar eps
+                k = min(min_samples, n_samples - 1)
+                neighbors = NearestNeighbors(n_neighbors=k)
+                neighbors.fit(self.data_scaled)
+                distances = neighbors.kneighbors_graph().data
+                eps = np.percentile(distances, 50)  # Mediana de distancias
+                logger.info(f"  eps estimado: {eps:.3f}")
+            except Exception as e:
+                logger.warning(f"  No se pudo estimar eps: {e}, usando default=0.5")
+                eps = 0.5
+
+        logger.info(f"\n▶ DBSCAN (eps={eps:.3f}, min_samples={min_samples})")
 
         dbscan = DBSCAN(eps=eps, min_samples=min_samples)
         labels = dbscan.fit_predict(self.data_scaled)
@@ -165,7 +231,12 @@ class ClusteringAnalyzer:
         n_clusters = len(set(labels)) - (1 if -1 in labels else 0)
         n_noise = list(labels).count(-1)
 
-        logger.info(f"  Clusters encontrados: {n_clusters}, Ruido: {n_noise}")
+        # Validar resultados
+        if n_clusters == 0:
+            logger.warning(f"  ⚠️  DBSCAN encontró 0 clusters (todos como ruido)")
+            logger.warning(f"      Considerando ajustar eps o min_samples")
+        else:
+            logger.info(f"  Clusters encontrados: {n_clusters}, Ruido: {n_noise}")
 
         metrics = self._calculate_metrics("DBSCAN", labels)
 

@@ -15,7 +15,9 @@
       "Bash(python:*)",
       "Bash(pip install:*)",
       "Bash(set OPENAI_API_KEY=)",
-      "Bash(set:*)"
+      "Bash(set:*)",
+      "Bash(cat:*)",
+      "Bash(git reset:*)"
     ],
     "deny": [],
     "ask": []
