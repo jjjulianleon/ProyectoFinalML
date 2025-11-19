@@ -17,7 +17,8 @@
       "Bash(set OPENAI_API_KEY=)",
       "Bash(set:*)",
       "Bash(cat:*)",
-      "Bash(git reset:*)"
+      "Bash(git reset:*)",
+      "Bash(git check-ignore:*)"
     ],
     "deny": [],
     "ask": []
